@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  samba-dc:
+    image: nowsci/samba-domain:latest
+    container_name: samba-${CLIENT_NAME}
+    hostname: dc-${CLIENT_NAME}
+    environment:
+      - DOMAIN=${CLIENT_DOMAIN}
+      - DOMAINPASS=${ADMIN_PASSWORD}
+      - HOSTIP=${STATIC_IP}
+      - DNSFORWARDER=${ANCHOR_IP}
+    dns:
+      - 127.0.0.1
+      - ${ANCHOR_IP}
+    volumes:
+      - /mnt/samba-vdi/${CLIENT_NAME}/config:/etc/samba
+      - /mnt/samba-vdi/${CLIENT_NAME}/data:/var/lib/samba
+    networks:
+      tenant_net:
+        ipv4_address: ${STATIC_IP}
+    cap_add:
+      - SYS_ADMIN
+    restart: unless-stopped
+
+networks:
+  tenant_net:
+    external: true
+    name: ${NETWORK_NAME}
