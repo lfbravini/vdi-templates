@@ -1,10 +1,22 @@
 version: '3.8'
 
 services:
+  # The Setup Crew: Checks for existing config, creates it ONLY if missing
+  samba-init:
+    image: alpine:latest
+    container_name: samba-init-${CLIENT_NAME}
+    volumes:
+      - /mnt/samba-vdi/${CLIENT_NAME}/config:/etc/samba
+    command: sh -c "if [ ! -f /etc/samba/smb.conf ]; then touch /etc/samba/smb.conf; echo 'Created missing smb.conf'; else echo 'smb.conf already exists, skipping'; fi"
+
+  # The Main Engine: The Samba Domain Controller
   samba-dc:
     image: nowsci/samba-domain:latest
     container_name: samba-${CLIENT_NAME}
     hostname: dc-${CLIENT_NAME}
+    depends_on:
+      samba-init:
+        condition: service_completed_successfully
     environment:
       - DOMAIN=${CLIENT_DOMAIN}
       - DOMAINPASS=${ADMIN_PASSWORD}
