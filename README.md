@@ -39,7 +39,7 @@ When deploying through the Portainer GUI, the template will ask for the followin
 | `CLIENT_DOMAIN` | The internal FQDN for the tenant's Active Directory. | `client02.local` |
 | `ADMIN_PASSWORD` | The Domain Administrator password. | `StrongPass123!` |
 | `STATIC_IP` | The dedicated IP address on the Macvlan network. | `172.69.100.75` |
-| `ANCHOR_IP` | The IP of your central Management/Anchor Domain Controller. Dns forwarder. | `172.16.6970` |
+| `ANCHOR_IP` | The IP of your central Management/Anchor Domain Controller. Dns forwarder. | `172.16.69.70` |
 | `NETWORK_NAME` | The exact name of your external Macvlan network in Docker. | `vdi_macvlan` |
 
 ## 💾 Data Persistence
