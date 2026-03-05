@@ -7,7 +7,7 @@
       "description": "Deploys a containerized Samba Active Directory Domain Controller for a new VDI tenant.",
       "logo": "https://www.samba.org/samba/style/logo.png",
       "repository": {
-        "url": "https://github.com/YOUR-GITHUB-USERNAME/daas-templates",
+        "url": "https://github.com/lfbravini/vdi-templates",
         "stackfile": "docker-compose.yml"
       },
       "env": [
