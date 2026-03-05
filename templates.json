@@ -1,0 +1,47 @@
+{
+  "version": "2",
+  "templates": [
+    {
+      "type": 3,
+      "title": "DaaS Satellite Domain",
+      "description": "Deploys a containerized Samba Active Directory Domain Controller for a new VDI tenant.",
+      "logo": "https://www.samba.org/samba/style/logo.png",
+      "repository": {
+        "url": "https://github.com/YOUR-GITHUB-USERNAME/daas-templates",
+        "stackfile": "docker-compose.yml"
+      },
+      "env": [
+        {
+          "name": "CLIENT_NAME",
+          "label": "Client ID (No spaces, e.g., client02)",
+          "default": "client02"
+        },
+        {
+          "name": "CLIENT_DOMAIN",
+          "label": "Satellite Domain (e.g., client02.local)",
+          "default": "client02.local"
+        },
+        {
+          "name": "ADMIN_PASSWORD",
+          "label": "Domain Admin Password",
+          "default": "Admin123!"
+        },
+        {
+          "name": "STATIC_IP",
+          "label": "Container Static IP Address",
+          "default": "172.16.100.75"
+        },
+        {
+          "name": "ANCHOR_IP",
+          "label": "Windows Anchor IP",
+          "default": "172.16.100.70"
+        },
+        {
+          "name": "NETWORK_NAME",
+          "label": "Macvlan Network Name",
+          "default": "vdi_macvlan"
+        }
+      ]
+    }
+  ]
+}
